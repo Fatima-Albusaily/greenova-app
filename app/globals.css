@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@theme {
+    --color-main: #6a994e;
+    --color-dark-main: #355E3B;
+    --color-mainbg: #fffdf7;
+    --color-desc: #355e3b;
+    --color-h: #3d5b2f;
+}
+.page-title {
+  @apply mt-6 text-5xl font-bold leading-tight text-dark-main md:text-6xl;
+}
+
+.page-description {
+  @apply mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#6b7566];
+}
+
+.card-title{
+  @apply text-2xl text-desc font-bold
+}
+
+.section-title{
+  @apply mt-4 text-5xl font-bold text-desc leading-tight
+}
+
+.section-subtitle{
+  @apply uppercase tracking-[0.25em] font-semibold text-main
+}
+
+/* body{
+  overflow-x: hidden;
+} */
+
+@media (width >= 64rem) {
+  .isize{
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+}
+@media (width >= 48rem) {
+  .hero-title {
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp .8s ease forwards;
+}
+.hover-grow {
+
+  transition: .3s;
+
+}
+
+.hover-grow:hover {
+
+  transform: scale(1.05);
+
+}
+.company-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #5F8F3F;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+
+/* @keyframes heroReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(20px);
+  }
+
+  40% {
+    opacity: .4;
+    filter: blur(4px);
+    transform: translateY(10px);
+  }
+
+  70% {
+    opacity: .8;
+    filter: blur(1px);
+    transform: translateY(3px);
+    scale: 1.05;
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+} */
+.hero-description{
+    opacity:0;
+    transform:translateY(25px);
+
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.5s;
+}
+.section-title{
+
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp .8s forwards;
+
+}
+.section-description{
+
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp .8s forwards;
+    animation-delay:.2s;
+
+}
+/* @keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+} */
+.hero-button{
+
+    opacity:0;
+    transform:translateY(20px);
+
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.6s;
+
+    transition:.3s;
+}
+
+.hero-button:hover{
+
+    transform:translateY(-3px) scale(1.03);
+
+}
+
+@keyframes successFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-success {
+  animation: successFadeDown .45s ease-out;
+}
