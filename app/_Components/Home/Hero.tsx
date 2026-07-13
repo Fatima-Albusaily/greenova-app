@@ -8,12 +8,12 @@ export default function Hero() {
   return (
     <section id="hero">
       <div className="bg-[url(/hero3.png)] pb-20 bg-center md:bg-cover flex justify-center items-center relative h-screen w-full">
-        <div className="contain flex flex-col justify-between mt-[3%] sm:m-0 h-1/2 w-full px-10 items-center">
+        <div className="contain flex flex-col justify-between md:mt-[3%] sm:m-0 h-1/2 w-full px-10 items-center">
           <p className="company-name">
             GreeNova
           </p>
           <Reveal>
-            <h1 className="hero-title text-center text-h text-5xl/16 font-bold">
+            <h1 className="hero-title text-center text-h text-3xl/13 md:text-5xl/16 font-bold">
             صحة الإنسان
             <br />
             تبدأ من صحة الأرض
@@ -47,7 +47,7 @@ export default function Hero() {
             لأنك لا تستحق أن تختار بين الفعالية والسلامة، نقدم حلولًا زراعية تحقق الاثنين معًا.
             </p>
           </Reveal>
-          <div className="buttons flex gap-5">
+          <div className="buttons flex md:flex-row flex-col gap-5">
             <Link href={'/contact'}>
               <button className="
                       px-9
@@ -69,10 +69,10 @@ export default function Hero() {
                       gap-4
                       ">
                         تواصل معنا
-                      <MessageCircle size={20} className="hidden md:block" />
+                      <MessageCircle size={20} />
               </button>
             </Link>
-            <Link href={'/about'}>
+            <Link href={'/whous'}>
               <button className="
                         md:px-6
                         px-5
@@ -96,7 +96,7 @@ export default function Hero() {
                           تعرف على المزيد
                           <ArrowLeft
                             size={20}
-                            className="hidden md:block transition-transform duration-300 group-hover:-translate-x-1"
+                            className="transition-transform duration-300 group-hover:-translate-x-1"
                           />
               </button>
             </Link>
