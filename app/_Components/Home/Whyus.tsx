@@ -32,7 +32,7 @@ export default function Whyus() {
 
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4 my-28 px-20">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4 my-28 px-5 md:px-20">
 
             <Reveal delay={200}>
                 <WhyUsCard

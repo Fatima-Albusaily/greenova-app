@@ -113,7 +113,7 @@ export default function Footer() {
 
             <p>
               Crafted by{" "}
-              <a href="" className="font-semibold text-[#A3B18A]">
+              <a href="https://wa.me/201505478487" className="font-semibold text-[#A3B18A]">
                 Fatima Albusaily
               </a>
             </p>

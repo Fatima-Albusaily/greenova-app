@@ -88,7 +88,7 @@ export default function Navbar() {
               <span className="sr-only">GreeNova</span>
               <Image
                 alt=""
-                src="/GreenOva.png"
+                src="/icon.png"
                 className="h-16 w-auto"
                 width={100}
                 height={100}
@@ -111,43 +111,43 @@ export default function Navbar() {
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
               <Link
-  key={item.name}
-  href={item.href}
-  className={`
-    relative
-    group
-    text-md/6
-    font-semibold
-    transition-colors
-    duration-300
+              key={item.name}
+              href={item.href}
+              className={`
+                relative
+                group
+                text-md/6
+                font-semibold
+                transition-colors
+                duration-300
 
-    ${
-      isActive(item.href)
-  ? activeColor
-  : textColor
-    }
-  `}
->
-  {item.name}
+                ${
+                  isActive(item.href)
+              ? activeColor
+              : textColor
+                }
+              `}
+            >
+              {item.name}
 
-  <span
-    className={`
-      absolute
-      -bottom-2
-      right-0
-      h-0.5
-      ${isScrolled ? "bg-[#D8F3DC]" : "bg-[#6A994E]"}
-      transition-all
-      duration-300
+              <span
+                className={`
+                  absolute
+                  -bottom-2
+                  right-0
+                  h-0.5
+                  ${isScrolled ? "bg-[#D8F3DC]" : "bg-[#6A994E]"}
+                  transition-all
+                  duration-300
 
-      ${
-        isActive(item.href)
-          ? "w-full"
-          : "w-0 group-hover:w-full"
-      }
-    `}
-  />
-</Link>
+                  ${
+                    isActive(item.href)
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }
+                `}
+              />
+            </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -188,6 +188,7 @@ export default function Navbar() {
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
+                      onClick={() => setMobileMenuOpen(false)}
                       href={item.href}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
                     >
@@ -198,6 +199,7 @@ export default function Navbar() {
                 <div className="py-6">
                   <Link
                     href="/whous"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
                   >
                     اعرف المزيد

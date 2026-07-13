@@ -12,7 +12,7 @@ export default function PageHero({
   description,
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-x-hidden bg-[#F8F4E8] pt-40 pb-10">
+    <section className="relative overflow-x-hidden px-10 bg-[#F8F4E8] pt-40 pb-10">
 
       {/* Background Blobs */}
 

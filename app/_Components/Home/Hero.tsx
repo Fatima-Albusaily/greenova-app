@@ -56,7 +56,6 @@ export default function Hero() {
                       rounded-4xl
                       bg-main
                       text-white
-                      font-semibold
                       text-md
                       md:text-lg
                       transition-all
@@ -70,7 +69,7 @@ export default function Hero() {
                       gap-4
                       ">
                         تواصل معنا
-                      <MessageCircle size={20} />
+                      <MessageCircle size={20} className="hidden md:block" />
               </button>
             </Link>
             <Link href={'/about'}>
@@ -97,7 +96,7 @@ export default function Hero() {
                           تعرف على المزيد
                           <ArrowLeft
                             size={20}
-                            className="transition-transform duration-300 group-hover:-translate-x-1"
+                            className="hidden md:block transition-transform duration-300 group-hover:-translate-x-1"
                           />
               </button>
             </Link>
