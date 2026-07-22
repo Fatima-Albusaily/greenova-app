@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 type PageHeroProps = {
   subtitle: string;
   title: string;
-  description: string;
+  description?: string;
 };
 
 export default function PageHero({

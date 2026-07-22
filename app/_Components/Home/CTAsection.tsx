@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "../Ui/Reveal";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 
 export default function CTASection() {
+  const t = useTranslation();
   return (
     <section className="bg-[#F8F4E8] py-24 relative overflow-hidden">
         <div className="absolute -left-24 top-0 h-64 w-64 rounded-full bg-main/15 blur-3xl" />
@@ -10,14 +14,13 @@ export default function CTASection() {
 
         <Reveal>
           <h2 className="card-title">
-            هل تبحث عن حلول زراعية أكثر أمانًا وفعالية؟
+            {t.cta.title}
           </h2>
         </Reveal>
 
         <Reveal delay={150}>
           <p className="section-description mx-auto mt-6 max-w-3xl text-xl text-desc">
-            يسعد فريق <strong className="text-dark-main">GreeNova</strong> بالإجابة عن جميع استفساراتكم
-            ومساعدتكم في اختيار الحلول الزراعية المناسبة.
+            {t.cta.description}
           </p>
         </Reveal>
 
@@ -43,7 +46,7 @@ export default function CTASection() {
                         hover:shadow-lg
                     "
                     >
-                    تواصل معنا
+                      {t.cta.contactButton}
                     </Link>
 
                     <Link
@@ -67,7 +70,7 @@ export default function CTASection() {
                         hover:text-white
                     "
                     >
-                    تصفح المنتجات
+                      {t.cta.productsButton}
                     </Link>
 
                 </div>

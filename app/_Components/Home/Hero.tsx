@@ -2,21 +2,26 @@
 import { ArrowLeft, Leaf, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import Reveal from "../Ui/Reveal";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
+
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
 
   return (
     <section id="hero">
       <div className="bg-[url(/hero3.png)] pb-20 bg-center md:bg-cover flex justify-center items-center relative h-screen w-full">
-        <div className="contain flex flex-col justify-between md:mt-[3%] sm:m-0 h-1/2 w-full px-10 items-center">
+        <div className="contain flex flex-col justify-between sm:m-0 h-1/2 w-full px-10 items-center">
           <p className="company-name">
             GreeNova
           </p>
           <Reveal>
             <h1 className="hero-title text-center text-h text-3xl/13 md:text-5xl/16 font-bold">
-            صحة الإنسان
+              {t.hero.titleLine1}
             <br />
-            تبدأ من صحة الأرض
+              {t.hero.titleLine2}
             </h1>
           </Reveal>
           <div className="flex items-center justify-center gap-4 my-8">
@@ -37,22 +42,22 @@ export default function Hero() {
                 md:max-w-3xl
                 mx-auto
                 text-xl
-                leading-9
+                leading-6
                 text-[#5E6A5E]
                 font-normal
                 text-center
                 mb-10
               "
             >
-            لأنك لا تستحق أن تختار بين الفعالية والسلامة، نقدم حلولًا زراعية تحقق الاثنين معًا.
+              {t.hero.description}
             </p>
           </Reveal>
           <div className="buttons flex md:flex-row flex-col gap-5">
             <Link href={'/contact'}>
               <button className="
-                      px-9
-                      md:px-12
-                      py-4.5
+                      md:px-6
+                      px-5
+                      py-4
                       rounded-4xl
                       bg-main
                       text-white
@@ -68,15 +73,14 @@ export default function Hero() {
                       items-center
                       gap-4
                       ">
-                        تواصل معنا
+                        {t.hero.contact}
                       <MessageCircle size={20} />
               </button>
             </Link>
             <Link href={'/whous'}>
               <button className="
-                        md:px-6
-                        px-5
-                        py-4
+                        px-4.5
+                        py-3.5
                         rounded-4xl
                         border-2
                         border-main
@@ -93,10 +97,9 @@ export default function Hero() {
                         gap-2
                         cursor-pointer
                         ">
-                          تعرف على المزيد
+                          {t.hero.learnMore}
                           <ArrowLeft
-                            size={20}
-                            className="transition-transform duration-300 group-hover:-translate-x-1"
+                            className={isRTL ? "" : "rotate-180"}
                           />
               </button>
             </Link>

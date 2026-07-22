@@ -6,8 +6,14 @@ import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { FaWhatsapp } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactForm() {
+    const t = useTranslation();
+    const { isRTL } = useLanguage();
+    const contact = t.contact;
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -33,25 +39,25 @@ export default function ContactForm() {
             let isValid = true;
 
             if (!formData.name.trim()) {
-                newErrors.name = "يرجى إدخال الاسم.";
+                newErrors.name = contact.validation.requiredName;
                 isValid = false;
             }
 
             if (!formData.email.trim()) {
-                newErrors.email = "يرجى إدخال البريد الإلكتروني.";
+                newErrors.email = contact.validation.requiredEmail;
                 isValid = false;
             } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-                newErrors.email = "البريد الإلكتروني غير صحيح.";
+                newErrors.email = contact.validation.invalidEmail;
                 isValid = false;
             }
 
             if (!formData.phone.trim()) {
-                newErrors.phone = "يرجى إدخال رقم الهاتف.";
+                newErrors.phone = contact.validation.requiredPhone;
                 isValid = false;
             }
 
             if (!formData.message.trim()) {
-                newErrors.message = "يرجى كتابة رسالتك.";
+                newErrors.message = contact.validation.requiredMessage;
                 isValid = false;
             }
 
@@ -81,12 +87,12 @@ export default function ContactForm() {
                     from_email: formData.email,
                     phone: formData.phone,
                     message: formData.message,
-                    subject: "رسالة جديدة من موقع GreeNova",
+                    subject: contact.toast.subject,
                 },
                 process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
             );
 
-            toast.success("تم إرسال رسالتك بنجاح.");
+            toast.success(contact.toast.success);
 
             setFormData({
             name: "",
@@ -97,7 +103,7 @@ export default function ContactForm() {
 
         } catch (error) {
             console.error(error);
-            toast.error("تعذر إرسال الرسالة.");
+            toast.error(contact.toast.error);
 
         } finally {
             setIsSubmitting(false);
@@ -110,20 +116,20 @@ export default function ContactForm() {
 
         <div className="title pb-10 mb-10 text-center">
             <Reveal>
-                <p className="text-[#6A994E] font-semibold tracking-[0.2em] uppercase">
+                <p className={`text-[#6A994E] font-semibold tracking-[0.2em] uppercase ${isRTL? "" : "hidden"}`}>
                     Contact Us
                 </p>
             </Reveal>
 
             <Reveal delay={150}>
                 <h2 className="mt-4 text-5xl font-bold text-dark-main leading-tight section-title">
-                    تواصل معنا
+                    {contact.hero.title}
                 </h2>
             </Reveal>
 
             <Reveal delay={300}>
                 <p className="mt-7 max-w-3xl mx-auto text-lg leading-8 text-[#6B7566] section-description">
-                 يسعدنا الرد على جميع استفساراتكم ومساعدتكم في اختيار الحلول الزراعية المناسبة.
+                    {contact.hero.description}
                 </p>
             </Reveal>
         </div>
@@ -131,12 +137,12 @@ export default function ContactForm() {
         <form onSubmit={handleSubmit} className="mt-14 space-y-6">
             <div>
                 <label className="mb-2 block font-medium">
-                    الاسم الكامل
+                    {contact.form.name}
                 </label>
 
                 <input
                     type="text"
-                    placeholder="أدخل اسمك"
+                    placeholder={contact.form.namePlaceholder}
                     value={formData.name}
                     onChange={(e) =>
                         setFormData({
@@ -167,12 +173,12 @@ export default function ContactForm() {
             </div>
             <div>
                 <label className="mb-2 block font-medium">
-                    البريد الإلكتروني
+                    {contact.form.email}
                 </label>
 
                 <input
                     type="email"
-                    placeholder="الإيميل"
+                    placeholder={contact.form.emailPlaceholder}
                     value={formData.email}
                     onChange={(e) =>
                     setFormData({
@@ -203,12 +209,12 @@ export default function ContactForm() {
             </div>
             <div>
                 <label className="mb-2 block font-medium">
-                    رقم الهاتف
+                    {contact.form.phone}
                 </label>
 
                 <input
                     type="text"
-                    placeholder="أدخل رقم هاتفك مسبوقًا برمز الدولة"
+                    placeholder={contact.form.phonePlaceholder}
                     value={formData.phone}
                     onChange={(e) =>
                     setFormData({
@@ -239,11 +245,11 @@ export default function ContactForm() {
             </div>
             <div>
                 <label className="mb-2 block font-medium">
-                    الرسالة
+                    {contact.form.message}
                 </label>
 
                 <textarea
-                    placeholder="اكتب رسالتك"
+                    placeholder={contact.form.messagePlaceholder}
                     value={formData.message}
                     onChange={(e) =>
                     setFormData({
@@ -306,62 +312,62 @@ export default function ContactForm() {
                         className="h-5 w-5 animate-spin"
                     />
 
-                    <span>جارٍ الإرسال...</span>
+                    <span>{contact.form.submitting}</span>
                     </>
                 ) : (
-                    "إرسال الرسالة"
+                    contact.form.submit
                 )}
             </button>
         </form>
 
         {/* WhatsApp CTA */}
 
-<div className="mt-10 flex flex-col items-center">
-  <div className="flex items-center gap-4 w-full max-w-md">
-    <div className="h-px flex-1 bg-[#D8D2BF]" />
+        <div className="mt-10 flex flex-col items-center">
+        <div className="flex items-center gap-4 w-full max-w-md">
+            <div className="h-px flex-1 bg-[#D8D2BF]" />
 
-    <span className="text-sm font-semibold text-[#8B9485]">
-      أو
-    </span>
+            <span className="text-sm font-semibold text-[#8B9485]">
+              {contact.whatsapp.or}
+            </span>
 
-    <div className="h-px flex-1 bg-[#D8D2BF]" />
-  </div>
+            <div className="h-px flex-1 bg-[#D8D2BF]" />
+        </div>
 
-  <a
-    href="https://wa.me/962781882724"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="
-      mt-6
-      inline-flex
-      items-center
-      gap-3
+        <a
+            href="https://wa.me/962781882724"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+            mt-6
+            inline-flex
+            items-center
+            gap-3
 
-      rounded-full
+            rounded-full
 
-      border-2
-      border-[#25D366]
+            border-2
+            border-[#25D366]
 
-      px-8
-      py-4
+            px-8
+            py-4
 
-      font-semibold
+            font-semibold
 
-      text-[#25D366]
+            text-[#25D366]
 
-      transition-all
-      duration-300
+            transition-all
+            duration-300
 
-      hover:bg-[#25D366]
-      hover:text-white
-      hover:shadow-lg
-    "
-  >
-    <FaWhatsapp size={24} />
+            hover:bg-[#25D366]
+            hover:text-white
+            hover:shadow-lg
+            "
+        >
+            <FaWhatsapp size={24} />
 
-    إرسال رسالة عبر واتساب
-  </a>
-</div>
+                {contact.whatsapp.button}
+        </a>
+        </div>
 
       </div>
     </section>

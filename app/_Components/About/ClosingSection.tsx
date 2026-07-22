@@ -1,6 +1,10 @@
+"use client";
+
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 import Reveal from "../Ui/Reveal";
 
 export default function ClosingSection() {
+  const t = useTranslation();
   return (
     <section className="relative overflow-x-hidden bg-[#F8F4E8] pb-28">
 
@@ -46,12 +50,12 @@ export default function ClosingSection() {
                 text-4xl
                 font-bold
                 leading-relaxed
-                text-[#355E3B]
+                text-dark-main
               "
             >
-              معًا نحو مستقبل
+              {t.about.closing.title.line1}
               <br />
-              زراعي أكثر استدامة
+              {t.about.closing.title.line2}
             </h2>
 
             {/* Description */}
@@ -66,12 +70,11 @@ export default function ClosingSection() {
                 text-[#6B7566]
               "
             >
-              في{" "}
-              <span className="font-semibold text-[#355E3B]">
-                GreeNova
+              {t.about.closing.description.line1}{" "}
+              <span className="font-semibold text-dark-main">
+                 GreeNova 
               </span>{" "}
-              نؤمن بأن الابتكار والاستدامة هما الأساس لبناء مستقبل أفضل،
-              وأن حماية الإنسان تبدأ من حماية الأرض التي تمنحه الحياة.
+              {t.about.closing.description.line2}
             </p>
 
             {/* Signature */}

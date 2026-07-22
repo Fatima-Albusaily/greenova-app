@@ -1,8 +1,10 @@
 "use client";
 
-import type { Product } from "@/app/_data/products";
 import Reveal from "../../Ui/Reveal";
 import { ArrowDown, Sparkles } from "lucide-react";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Product } from "@/app/_data/products";
 
 type ModeOfActionSectionProps = {
   product: Product;
@@ -11,6 +13,11 @@ type ModeOfActionSectionProps = {
 export default function ModeOfActionSection({
   product,
 }: ModeOfActionSectionProps) {
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
+  const pro = t.products[product.id];
+  const modeOfAction = pro.modeOfAction;
+  if (!modeOfAction) return null;
   return (
     <section className="bg-white py-24">
       <div className="container mx-auto px-6">
@@ -18,12 +25,12 @@ export default function ModeOfActionSection({
 
         <Reveal>
           <div className="mb-16 text-center">
-            <p className="font-semibold uppercase tracking-[0.2em] text-[#6A994E]">
+            <p className={`font-semibold uppercase tracking-[0.2em] text-main ${isRTL? "" : "hidden"}`}>
               Mode of Action
             </p>
 
             <h2 className="mt-4 text-5xl font-bold text-dark-main">
-              آلية العمل
+              {t.productDetails.modeOfAction}
             </h2>
           </div>
         </Reveal>
@@ -31,7 +38,7 @@ export default function ModeOfActionSection({
         {/* Timeline */}
 
         <div className="mx-auto flex max-w-4xl flex-col items-center">
-          {product.modeOfAction.paragraphs.map((paragraph, index) => (
+          {modeOfAction && (modeOfAction.paragraphs.map((paragraph, index) => (
             <div
               key={index}
               className="flex w-full flex-col items-center"
@@ -53,14 +60,15 @@ export default function ModeOfActionSection({
                 </div>
               </Reveal>
 
-              {index !== product.modeOfAction.paragraphs.length - 1 && (
+              {index !== modeOfAction.paragraphs.length - 1 && (
                 <ArrowDown
                   className="my-6 text-[#6A994E]"
                   size={28}
                 />
               )}
+                            
             </div>
-          ))}
+          )))}
         </div>
 
         {/* Result */}
@@ -87,12 +95,12 @@ export default function ModeOfActionSection({
               <Sparkles className="text-[#CFE7C4]" size={26} />
 
               <h3 className="text-3xl font-bold">
-                النتيجة
+                {t.productDetails.result}
               </h3>
             </div>
 
             <p className="leading-9 text-white/90">
-              {product.modeOfAction.result}
+              {modeOfAction.result}
             </p>
           </div>
         </Reveal>

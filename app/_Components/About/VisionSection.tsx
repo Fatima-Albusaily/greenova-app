@@ -1,8 +1,11 @@
-import { vision } from "@/app/_data/about";
+"use client";
+
 import Reveal from "../Ui/Reveal";
-import { Eye, Leaf, LeafIcon, Trees } from "lucide-react";
+import { Eye, Trees } from "lucide-react";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 
 export default function VisionSection() {
+  const t = useTranslation();
   return (
     <section className="py-24 bg-[#F8F4E8]">
 
@@ -108,7 +111,7 @@ export default function VisionSection() {
                   font-bold
                 "
               >
-                رؤيتنا
+                {t.about.vision.title}
               </h2>
 
               {/* Divider */}
@@ -135,7 +138,7 @@ export default function VisionSection() {
                   text-white/90
                 "
               >
-                {vision}
+                {t.about.vision.description}
               </p>
 
             </div>

@@ -1,7 +1,9 @@
 "use client";
 
-import type { Product } from "@/app/_data/products";
+import { Product } from "@/app/_data/products";
 import Reveal from "../../Ui/Reveal";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type CompositionSectionProps = {
   product: Product;
@@ -10,6 +12,9 @@ type CompositionSectionProps = {
 export default function CompositionSection({
   product,
 }: CompositionSectionProps) {
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
+  const pro = t.products[product.id]
   return (
     <section className="bg-mainbg py-24">
       <div className="container mx-auto px-6">
@@ -17,12 +22,12 @@ export default function CompositionSection({
 
         <Reveal>
           <div className="mb-16 text-center">
-            <p className="font-semibold uppercase tracking-[0.2em] text-[#6A994E]">
+            <p className={`font-semibold uppercase tracking-[0.2em] text-[#6A994E] ${isRTL? "" : "hidden"}`}>
               Composition
             </p>
 
             <h2 className="mt-4 text-5xl font-bold text-dark-main">
-              التركيب
+              {t.productDetails.compisition}
             </h2>
           </div>
         </Reveal>
@@ -30,7 +35,7 @@ export default function CompositionSection({
         {/* Cards */}
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {product.composition.map((item, index) => (
+          {pro.composition.map((item, index) => (
             <Reveal key={index} delay={index * 70}>
               <div
                 className="

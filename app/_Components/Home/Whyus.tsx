@@ -1,9 +1,13 @@
-import React from 'react'
+"use client";
+
 import { Handshake, ShieldCheck, Sprout, Zap } from 'lucide-react'
 import Reveal from '../Ui/Reveal'
 import WhyUsCard from '../Ui/WhyUsCard'
+import { useTranslation } from '@/app/_Hooks/hooks/useTranslation';
 
 export default function Whyus() {
+    const t = useTranslation();
+    
   return (
     <section className="py-28 bg-mainbg">
 
@@ -12,19 +16,18 @@ export default function Whyus() {
             <div className="text-center">
 
                 <p className="section-subtitle">
-                    Why GreeNova
+                    {t.whyUs.subtitle}
                 </p>
 
                 <Reveal>
                     <h2 className="mt-4 text-5xl font-bold text-desc leading-tight">
-                    لماذا GreeNova؟
+                        {t.whyUs.title}
                     </h2>
                 </Reveal>
 
                 <Reveal delay={150}>
                     <p className="mt-6 max-w-3xl mx-auto text-lg leading-8 text-[#6B7566] section-description">
-                    نجمع بين الابتكار الزراعي والجودة والالتزام، لنقدم حلولًا
-                    حديثة تساعدك على تحقيق أفضل النتائج بطريقة آمنة ومستدامة.
+                        {t.whyUs.description}
                     </p>
                 </Reveal>
 
@@ -38,8 +41,8 @@ export default function Whyus() {
                 <WhyUsCard
                 href="/products"
                 icon={ShieldCheck}
-                title="حلول آمنة"
-                description="حلول زراعية تراعي صحة الإنسان وتحافظ على البيئة."
+                title={t.whyUs.cards.safety.title}
+                description={t.whyUs.cards.safety.description}
                 />
             </Reveal>
 
@@ -47,8 +50,8 @@ export default function Whyus() {
                 <WhyUsCard
                 href="/products"
                 icon={Sprout}
-                title="استدامة"
-                description="نساعدك على بناء مستقبل زراعي أكثر استدامة."
+                title={t.whyUs.cards.sustainability.title}
+                description={t.whyUs.cards.sustainability.description}
                 />
             </Reveal>
 
@@ -56,8 +59,8 @@ export default function Whyus() {
                 <WhyUsCard
                 href="/products"
                 icon={Zap}
-                title="نتائج فعّالة"
-                description="تقنيات حديثة تحقق أداءً عاليًا وإنتاجية أفضل."
+                title={t.whyUs.cards.efficiency.title}
+                description={t.whyUs.cards.efficiency.description}
                 />
             </Reveal>
 
@@ -65,8 +68,8 @@ export default function Whyus() {
                 <WhyUsCard
                 href="/products"
                 icon={Handshake}
-                title="دعم مستمر"
-                description="نرافقك في كل خطوة من الاستشارة حتى التنفيذ."
+                title={t.whyUs.cards.support.title}
+                description={t.whyUs.cards.support.description}
                 />
             </Reveal>
 

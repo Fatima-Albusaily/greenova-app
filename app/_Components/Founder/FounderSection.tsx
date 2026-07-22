@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Reveal from "../Ui/Reveal";
 import { founder } from "@/app/_data/founder";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 
 export default function FounderSection() {
+  const t = useTranslation();
   return (
     <section className="bg-white py-24">
 
@@ -48,7 +52,7 @@ export default function FounderSection() {
               >
                 <Image
                   src={founder.image}
-                  alt={founder.name}
+                  alt={t.founder.info.name}
                   fill
                   className="object-cover"
                 />
@@ -64,23 +68,23 @@ export default function FounderSection() {
 
             <div>
 
-              <p className="font-semibold uppercase tracking-[.25em] text-[#6A994E]">
+              <p className="font-semibold uppercase tracking-[.25em] text-main">
                 Founder
               </p>
 
-              <h2 className="mt-5 text-5xl font-bold text-[#355E3B]">
-                {founder.name}
+              <h2 className="mt-5 text-5xl font-bold text-dark-main">
+                {t.founder.info.name}
               </h2>
 
               <p className="mt-4 text-xl text-[#6A994E]">
-                {founder.position}
+                {t.founder.info.position}
               </p>
 
               <div className="mt-8 h-0.5 w-28 rounded-full bg-[#6A994E]" />
 
               <div className="mt-8 space-y-6">
 
-                {founder.bio.map((paragraph) => (
+                {t.founder.info.bio.map((paragraph) => (
                   <p
                     key={paragraph}
                     className="leading-9 text-[#6B7566]"

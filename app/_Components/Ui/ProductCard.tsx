@@ -2,13 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-import { Product } from "@/app/_data/products";
+import { Product, products } from "@/app/_data/products";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { ProductTranslation } from "@/translations/types";
 
 type ProductCardProps = {
   product: Product;
+  content?: ProductTranslation;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, content }: ProductCardProps) {
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
+
   return (
     <Link
       href={`/products/${product.id}`}
@@ -52,7 +59,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </h3>
 
         <p className="mt-4 line-clamp-3 leading-8 text-[#6B7566]">
-          {product.shortDescription}
+          {t.products[product.id].shortDescription}
         </p>
 
         <div
@@ -71,16 +78,16 @@ export default function ProductCard({ product }: ProductCardProps) {
             group-hover:gap-3
           "
         >
-          <span>التفاصيل</span>
+          <span>{t.featuredProducts.details}</span>
 
           <ArrowLeft
             size={20}
-            className="
+            className={`
               transition-transform
               duration-300
-
+              ${isRTL ? "" : "rotate-180"}
               group-hover:-translate-x-1
-            "
+            `}
           />
         </div>
       </div>

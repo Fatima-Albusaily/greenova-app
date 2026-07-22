@@ -1,15 +1,16 @@
+"use client";
+
 import Reveal from "../Ui/Reveal";
 import {
   GraduationCap,
   BriefcaseBusiness,
 } from "lucide-react";
-
-import {
-  qualifications,
-  positions,
-} from "@/app/_data/founder";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function QualificationsSection() {
+  const t = useTranslation();
+  const qual = t.founder.qualifications;
   return (
     <section className="bg-[#F8F4E8] py-24">
 
@@ -26,12 +27,11 @@ export default function QualificationsSection() {
             </p>
 
             <h2 className="mt-4 text-5xl font-bold text-dark-main">
-              المؤهلات والمناصب
+              {qual.title}
             </h2>
 
             <p className="mx-auto mt-6 max-w-3xl leading-8 text-[#6B7566]">
-              مسيرة أكاديمية ومهنية امتدت عبر سنوات من التعلم،
-              والقيادة، وبناء المشاريع الزراعية المستدامة.
+              {qual.description}
             </p>
 
           </div>
@@ -42,14 +42,14 @@ export default function QualificationsSection() {
 
           <TimelineColumn
             icon={<GraduationCap size={30} />}
-            title="المؤهلات"
-            data={qualifications}
+            title={qual.educationTitle}
+            data={qual.qualData}
           />
 
           <TimelineColumn
             icon={<BriefcaseBusiness size={30} />}
-            title="المناصب"
-            data={positions}
+            title={qual.positionsTitle}
+            data={qual.positionData}
           />
 
         </div>
@@ -73,6 +73,7 @@ function TimelineColumn({
     date: string;
   }[];
 }) {
+  const { isRTL } = useLanguage();
   return (
     <Reveal>
 
@@ -92,7 +93,7 @@ function TimelineColumn({
 
         <div className="relative">
 
-          <div className="absolute right-2.75 top-0 h-full w-px bg-[#D6DCCF]" />
+          <div className={`absolute ${isRTL? "right-2.75" : "left-2.75"} top-0 h-full w-px bg-[#D6DCCF]`} />
 
           <div className="space-y-10">
 
@@ -100,13 +101,13 @@ function TimelineColumn({
 
               <div
                 key={`${item.title}-${item.date}`}
-                className="relative pr-10"
+                className={`relative ${isRTL? "pr-10" : "pl-10"}`}
               >
 
                 <span
-                  className="
+                  className={`
                     absolute
-                    right-0
+                    ${isRTL? "right-0" : "left-0"}
                     top-2
                     h-6
                     w-6
@@ -114,7 +115,7 @@ function TimelineColumn({
                     border-4
                     border-[#F8F4E8]
                     bg-[#6A994E]
-                  "
+                  `}
                 />
 
                 <span

@@ -1,9 +1,10 @@
 "use client";
 
 import { Check } from "lucide-react";
-
 import Reveal from "../../Ui/Reveal";
-import type { Product } from "@/app/_data/products";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { Product } from "@/app/_data/products";
 
 type EffectsSectionProps = {
   product: Product;
@@ -12,6 +13,10 @@ type EffectsSectionProps = {
 export default function EffectsSection({
   product,
 }: EffectsSectionProps) {
+  const t = useTranslation();
+  const {isRTL} = useLanguage();
+  const pro = t.products[product.id];
+  if (!pro.effects) return null
   return (
     <section className="bg-white py-24">
       <div className="container mx-auto px-6">
@@ -19,12 +24,12 @@ export default function EffectsSection({
 
         <Reveal>
           <div className="mb-16 text-center">
-            <p className="font-semibold uppercase tracking-[0.2em] text-[#6A994E]">
+            <p className={`font-semibold uppercase tracking-[0.2em] text-[#6A994E] ${isRTL? "" : "hidden"}`}>
               How It Works
             </p>
 
             <h2 className="mt-4 text-5xl font-bold text-dark-main">
-              تعمل عن طريق
+              {t.productDetails.effects}
             </h2>
           </div>
         </Reveal>
@@ -32,7 +37,7 @@ export default function EffectsSection({
         {/* Cards */}
 
         <div className="grid gap-6 md:grid-cols-2">
-          {product.effects.map((effect, index) => (
+          {pro.effects.map((effect, index) => (
             <Reveal key={index} delay={index * 80}>
               <div
                 className="

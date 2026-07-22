@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft, LucideIcon } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type WhyUsCardProps = {
   icon: LucideIcon;
@@ -14,6 +15,8 @@ export default function WhyUsCard({
   description,
   href,
 }: WhyUsCardProps) {
+    const { isRTL } = useLanguage();
+
   return (
     <Link
       href={href}
@@ -91,6 +94,7 @@ export default function WhyUsCard({
           text-center
           leading-8
           text-[#6B7566]
+          line-clamp-2
         "
       >
         {description}
@@ -114,14 +118,14 @@ export default function WhyUsCard({
         "
       >
         <ArrowLeft
-          className="
+          className={`
             text-[#6A994E]
 
             transition-transform
             duration-300
-
+            ${isRTL ? "" : "rotate-180"}
             group-hover:-translate-x-1
-          "
+          `}
           size={22}
         />
       </div>

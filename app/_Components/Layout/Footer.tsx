@@ -1,7 +1,13 @@
+"use client";
+
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
+
+  const t = useTranslation();
   return (
     <>
 
@@ -20,9 +26,7 @@ export default function Footer() {
               <div className="mt-5 h-1 w-20 rounded-full bg-[#A3B18A] mx-auto sm:mx-0" />
 
               <p className="mt-6 leading-8 text-white/80">
-                حلول زراعية حديثة تجمع بين الفاعلية
-                وسلامة الإنسان والبيئة، لنمنح المزارعين
-                مستقبلًا أكثر استدامة.
+                {t.footer.description}
               </p>
 
             </div>
@@ -30,38 +34,38 @@ export default function Footer() {
             <div>
 
               <h4 className="text-xl font-semibold">
-                الصفحات
+                {t.footer.pages}
               </h4>
 
               <ul className="mt-6 space-y-4 text-white/80">
 
                 <li>
                   <Link href="/">
-                    الرئيسية
+                    {t.navbar.home}
                   </Link>
                 </li>
 
                 <li>
                   <Link href="/whous">
-                    من نحن
+                    {t.navbar.about}
                   </Link>
                 </li>
 
                 <li>
                   <Link href="/founder">
-                    عن المؤسس
+                    {t.navbar.founder}
                   </Link>
                 </li>
 
                 <li>
                   <Link href="/products">
-                    المنتجات
+                    {t.navbar.products}
                   </Link>
                 </li>
 
                 <li>
                   <Link href="/contact">
-                    تواصل معنا
+                    {t.navbar.contact}
                   </Link>
                 </li>
 
@@ -72,7 +76,7 @@ export default function Footer() {
             <div>
 
               <h4 className="text-xl font-semibold">
-                تواصل معنا
+                {t.footer.contact}
               </h4>
 
               <div className="mt-6 space-y-5 text-white/80">
@@ -83,14 +87,18 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-center gap-3">
+                
                   <Phone size={18} />
                   <span>+20 1007075680</span>
                 </div>
+
                 <div className="flex items-center gap-3">
+                
                   <Phone size={18} />
                   <span>+962781882724</span>
                 </div>
 
+                
                 <div className="flex items-center gap-3">
                   <MapPin size={18} />
                   <span>Egypt</span>
@@ -108,11 +116,11 @@ export default function Footer() {
 
             <p>
               © {new Date().getFullYear()} GreeNova.
-              جميع الحقوق محفوظة.
+              {t.footer.rights}
             </p>
 
             <p>
-              Crafted by{" "}
+              {t.footer.craftedBy}{" "}
               <a href="https://wa.me/201505478487" className="font-semibold text-[#A3B18A]">
                 Fatima Albusaily
               </a>

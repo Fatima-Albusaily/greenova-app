@@ -1,6 +1,12 @@
+"use client";
+
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 import Reveal from "../Ui/Reveal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ProductsHero() {
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
   return (
     <section
       className="
@@ -19,22 +25,20 @@ export default function ProductsHero() {
       <div className="relative container mx-auto flex min-h-[55vh] justify-center items-center px-6 pt-36 pb-20">
         <div className="max-w-3xl text-white">
           <Reveal>
-            <p className="font-semibold uppercase tracking-[0.2em] text-[#CFE7C4]">
+            <p className={`font-semibold uppercase tracking-[0.2em] text-[#CFE7C4] ${isRTL? "" : "hidden"}`}>
               Products
             </p>
           </Reveal>
 
           <Reveal delay={150}>
             <h1 className="mt-5 text-5xl font-extrabold leading-tight md:text-6xl">
-              منتجاتنا
+              {t.productsPage.hero.title}
             </h1>
           </Reveal>
 
           <Reveal delay={300}>
             <p className="mt-8 text-lg leading-9 text-white/90">
-              نقدم مجموعة متكاملة من الحلول الزراعية والبيطرية المطورة بأحدث
-              التقنيات، لتوفير منتجات فعالة وآمنة تدعم الاستدامة وتحافظ على صحة
-              الإنسان والحيوان والبيئة.
+              {t.productsPage.hero.description}
             </p>
           </Reveal>
         </div>

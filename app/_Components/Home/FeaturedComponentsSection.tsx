@@ -1,10 +1,14 @@
+"use client";
+
 import { products } from "@/app/_data/products";
 import FeaturedProductCard from "../Ui/FeaturedProductCard";
 import Reveal from "../Ui/Reveal";
 import ProductCard from "../Ui/ProductCard";
 import Link from "next/link";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 
 export default function FeaturedProductsSection() {
+  const t = useTranslation();
   const featuredProducts = products.filter(
     (product) => product.isFeatured
   );
@@ -20,20 +24,19 @@ export default function FeaturedProductsSection() {
         <div className="title mb-10 pb-10 text-center">
           <Reveal>
             <p className="font-semibold uppercase tracking-[0.2em] text-[#6A994E]">
-              Featured products
+              {t.featuredProducts.subtitle}
             </p>
           </Reveal>
 
           <Reveal delay={150}>
             <h2 className="mt-4 text-5xl font-bold leading-tight text-dark-main">
-              منتجاتنا المميزة
+              {t.featuredProducts.title}
             </h2>
           </Reveal>
 
           <Reveal delay={300}>
             <p className="section-description mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#6B7566]">
-              مجموعة مختارة من منتجاتنا الزراعية المصممة لتقديم نتائج فعالة
-              مع الحفاظ على صحة الإنسان والبيئة.
+              {t.featuredProducts.description}
             </p>
           </Reveal>
         </div>
@@ -52,7 +55,7 @@ export default function FeaturedProductsSection() {
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {otherProducts.map((product, index) => (
               <Reveal key={product.id} delay={index * 150}>
-                <ProductCard product={product} />
+                <ProductCard product={product} content={t.products[product.id]}/>
               </Reveal>
             ))}
           </div>
@@ -66,7 +69,7 @@ export default function FeaturedProductsSection() {
               href="/products"
               className="cursor-pointer rounded-full border-2 border-[#6A994E] px-8 py-4 font-semibold text-dark-main transition-all duration-300 hover:bg-[#6A994E] hover:text-white"
             >
-              عرض جميع المنتجات
+              {t.featuredProducts.button}
             </Link>
           </div>
         </Reveal>

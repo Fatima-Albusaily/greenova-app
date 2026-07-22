@@ -1,3 +1,5 @@
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +7,6 @@ import Link from "next/link";
 type Product = {
   id: string;
   name: string;
-  shortDescription: string;
   image: string;
 };
 
@@ -16,6 +17,9 @@ type FeaturedProductCardProps = {
 export default function FeaturedProductCard({
   product,
 }: FeaturedProductCardProps) {
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
+
   return (
   <Link href={`products/${product.id}`} className="group relative block overflow-hidden rounded-4xl">
     <Image src={product.image} alt={product.name} width={1400} height={700} 
@@ -35,7 +39,7 @@ export default function FeaturedProductCard({
           py-2
           text-sm
           font-medium backdrop-blur-md">
-        المنتج المميز
+            {t.featuredProducts.featuredBadge}
       </span>
 
       <h3
@@ -58,7 +62,8 @@ export default function FeaturedProductCard({
           text-white/90
         "
       >
-        {product.shortDescription}
+        {t.products[product.id].shortDescription}
+
       </p>
 
       <div
@@ -74,9 +79,8 @@ export default function FeaturedProductCard({
           group-hover:gap-5
         "
       >
-        تعرف على المزيد
-
-        <ArrowLeft size={20}/>
+        {t.featuredProducts.button}
+        <ArrowLeft size={20} className={`${isRTL ? "" : "rotate-180"}`}/>
       </div>
     </div>
   </Link>

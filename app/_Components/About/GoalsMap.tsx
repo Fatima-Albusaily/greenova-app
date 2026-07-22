@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import Reveal from "../Ui/Reveal";
-import { goals } from "@/app/_data/about";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 
 export default function GoalsMap() {
-  const [activeGoal, setActiveGoal] = useState(goals[0]);
-
+  const t = useTranslation();
+  const goals = t.about.goal.goals;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeGoal = goals[activeIndex];
+  
   return (
-
       <div className="container mx-auto px-6 ">
-
         {/* Interactive Area */}
 
         <Reveal delay={200}>
@@ -65,8 +66,8 @@ export default function GoalsMap() {
 
                   <button
                     key={goal.title}
-                    onMouseEnter={() => setActiveGoal(goal)}
-                    onClick={() => setActiveGoal(goal)}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onClick={() => setActiveIndex(index)}
                     className={`absolute ${positions[index]} flex flex-col items-center gap-3`}
                   >
 
@@ -121,8 +122,8 @@ export default function GoalsMap() {
 
             <div className="flex flex-col text-center gap-10">
                 <p className="text-2xl font-bold text-desc">
-                    نرفع شعار 
-                    <i> "زراعة طبيعية، لحياة صحية"</i>
+                  {t.about.goal.slogan[0]}
+                    <i>{t.about.goal.slogan[1]}</i>
                 </p>
 
                 <div

@@ -1,17 +1,23 @@
+"use client";
+
 import Reveal from "../Ui/Reveal";
 import { Quote } from "lucide-react";
-
-import { founderMessage } from "@/app/_data/founder";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function FounderMessageSection() {
+  const t = useTranslation();
+  const { isRTL } = useLanguage();
+  const founderMessage = t.founder.founderMessage;
+
   return (
     <section className="relative overflow-hidden bg-[#F8F4E8] py-28">
 
       {/* Background Decoration */}
 
       <div className="absolute inset-0 opacity-[0.04]">
-        <div className="absolute -left-40 top-10 h-112.5 w-112.5 rounded-full border border-[#355E3B]" />
-        <div className="absolute -right-40 bottom-0 h-137.5 w-137.5 rounded-full border border-[#355E3B]" />
+        <div className="absolute -left-40 top-10 h-112.5 w-112.5 rounded-full border border-dark-main" />
+        <div className="absolute -right-40 bottom-0 h-137.5 w-137.5 rounded-full border border-dark-main" />
       </div>
 
       <div className="container relative mx-auto px-6">
@@ -22,11 +28,11 @@ export default function FounderMessageSection() {
 
           <div className="text-center">
 
-            <p className="font-semibold uppercase tracking-[.3em] text-[#6A994E]">
+            <p className={`font-semibold uppercase tracking-[.3em] text-main ${isRTL? "" : "hidden"}`}>
               Founder&apos;s Message
             </p>
 
-            <h2 className="mt-5 text-5xl font-bold text-[#355E3B]">
+            <h2 className="mt-5 text-5xl font-bold text-dark-main">
               {founderMessage.title}
             </h2>
 
@@ -97,11 +103,11 @@ export default function FounderMessageSection() {
 
                 <div className="mb-4 h-px w-40 bg-[#D8D8D8]" />
 
-                <h3 className="text-2xl md:text-3xl font-bold text-[#355E3B]">
+                <h3 className="text-2xl md:text-3xl font-bold text-dark-main">
                   {founderMessage.signature.name}
                 </h3>
 
-                <p className="mt-2 text-[#6A994E]">
+                <p className="mt-2 text-main">
                   {founderMessage.signature.title}
                 </p>
 

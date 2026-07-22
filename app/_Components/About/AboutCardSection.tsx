@@ -1,8 +1,11 @@
-import { aboutStory } from "@/app/_data/about";
+"use client";
+
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 import Reveal from "../Ui/Reveal";
 import { Leaf } from "lucide-react";
 
 export default function AboutCardSection() {
+  const t = useTranslation();
   return (
     <section className="relative overflow-hidden bg-[#F8F4E8] py-24">
 
@@ -26,7 +29,7 @@ export default function AboutCardSection() {
             </div>
 
             <h2 className="mt-8 text-center card-title">
-              نبذة عن GreeNova
+              {t.about.aboutStory.title}
             </h2>
 
             <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-main" />
@@ -44,7 +47,7 @@ export default function AboutCardSection() {
             >
 
               <p>
-                {aboutStory.paragraphs[0]}
+                {t.about.aboutStory.paragraphs[0]}
               </p>
 
             </div>

@@ -1,23 +1,26 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import React from 'react' 
 import Link from 'next/link'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import Image from 'next/image'
-import { ArrowLeft } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import LanguageSwitcher from '../Ui/LanguageSwitcher'
+import { useTranslation } from '@/app/_Hooks/hooks/useTranslation'
 
-const navigation = [
-  { name: 'الرئيسية', href: '/'},
-  { name: 'من نحن', href: '/whous' },
-  { name: 'عن المؤسس', href: '/founder' },
-  { name: 'منتجاتنا', href: '/products' },
-  { name: 'تواصل معنا', href: '/contact' },
-]
 
 export default function Navbar() {
+  
+  const t = useTranslation();
+
+  const navigation = [
+    { name: t.navbar.home, href: '/'},
+    { name: t.navbar.about, href: '/whous' },
+    { name: t.navbar.founder, href: '/founder' },
+    { name: t.navbar.products, href: '/products' },
+    { name: t.navbar.contact, href: '/contact' },
+  ]
 
   const pathname = usePathname();
 
@@ -151,13 +154,7 @@ export default function Navbar() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link
-              href="/whous"
-              className={`text-md/6 flex items-center gap-2 cursor-pointer ${textColor} transition-colors duration-300`}
-            >
-             اعرف المزيد
-             <ArrowLeft size={15}/>
-            </Link>
+            <LanguageSwitcher/>
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -170,7 +167,7 @@ export default function Navbar() {
                   alt=""
                   src="/icon.png"
                   className="h-14 w-auto"
-                  
+                  loading="eager"
                 />
               </Link>
               <button
@@ -197,13 +194,7 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <Link
-                    href="/whous"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                  >
-                    اعرف المزيد
-                  </Link>
+                  <LanguageSwitcher />
                 </div>
               </div>
             </div>

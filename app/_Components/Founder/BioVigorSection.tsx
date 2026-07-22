@@ -1,12 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { Leaf } from "lucide-react";
 
 import Reveal from "../Ui/Reveal";
 import { bioVigor } from "@/app/_data/founder";
+import { useTranslation } from "@/app/_Hooks/hooks/useTranslation";
 
 export default function BioVigorSection() {
+  const t = useTranslation();
+  const bioData = t.founder.bioVigor;
   return (
-    <section className="relative overflow-hidden bg-linear-to-br from-[#355E3B] via-[#3D6B42] to-[#27462D] py-28">
+    <section className="relative overflow-hidden bg-linear-to-br from-dark-main via-[#3D6B42] to-[#27462D] py-28">
 
       {/* Background Decoration */}
 
@@ -58,7 +63,7 @@ export default function BioVigorSection() {
               >
                 <Image
                   src={bioVigor.image}
-                  alt={bioVigor.title}
+                  alt={bioData.title}
                   fill
                   className="object-cover"
                 />
@@ -79,14 +84,14 @@ export default function BioVigorSection() {
               </p>
 
               <h2 className="mt-5 text-5xl font-bold text-white">
-                {bioVigor.title}
+                {bioData.title}
               </h2>
 
               <div className="mt-6 h-0.5 w-28 rounded-full bg-[#8BC34A]" />
 
               <div className="mt-10 space-y-6">
 
-                {bioVigor.description.map((paragraph) => (
+                {bioData.description.map((paragraph) => (
 
                   <div
                     key={paragraph}
